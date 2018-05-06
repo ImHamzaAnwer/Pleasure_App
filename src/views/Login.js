@@ -45,7 +45,6 @@ const styles = {
     outline: "none"
   },
   logo: {
-    marginTop: -150,
     display: "block",
     margin: "auto",
     width: "100%",
