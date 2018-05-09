@@ -17,8 +17,8 @@ export default {
       icon: 'icon-envelope',
     },
     {
-      name: 'Add New Branch',
-      url: '/newBranch',
+      name: 'Add Branch',
+      url: '/add_branch',
       icon: 'icon-plus',
     },
     {

@@ -17,7 +17,6 @@ import '../scss/core/_dropdown-menu-right.scss'
 // Containers
 import Full from './containers/Full/'
 import Login from './views/Login';
-import ReasonAnalytics from './views/ReasonAnalytics';
 import * as firebase from 'firebase';
 
 var config = {

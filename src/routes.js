@@ -3,5 +3,6 @@ const routes = {
   '/': 'Home',
   '/dashboard': 'Dashboard',
   'reason': 'Reason',
+  'add_location': "Add Location"
 };
 export default routes;

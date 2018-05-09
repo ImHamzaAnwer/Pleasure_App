@@ -8,6 +8,7 @@ import Footer from '../../components/Footer/';
 
 import Dashboard from '../../views/Dashboard';
 import ReasonAnalytics from '../../views/ReasonAnalytics';
+import AddBranch from '../../views/AddBranch';
 
 class Full extends Component {
   render() {
@@ -17,14 +18,13 @@ class Full extends Component {
         <div className="app-body">
           <Sidebar {...this.props} />
           <main className="main">
-            <Breadcrumb />
-            <Container fluid>
+ 
               <Switch>
                 <Route path="/dashboard" name="Dashboard" component={Dashboard} />
+                <Route path="/add_branch" name="Add Branch" component={AddBranch} />
                 <Route path="/reason" name="Reason Analytics" component={ReasonAnalytics} />
                 <Redirect from="/" to="/dashboard" />
               </Switch>
-            </Container>
           </main>
 
         </div>

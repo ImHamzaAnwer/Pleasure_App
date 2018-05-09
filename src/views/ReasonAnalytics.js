@@ -18,15 +18,7 @@ export default class ReasonAnalytics extends Component {
 
 const styles = {
   container: {
-    display: "flex",
-    flexWrap: "wrap",
-    flex: 1,
-    width: '100%',
-    height: '100vh',
-    overflow: 'hidden',
     backgroundColor: '#efefef',
-    justifyContent: "center",
-    alignItems: "center",
   },
   input: {
     width: 300,

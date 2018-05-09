@@ -44,7 +44,8 @@ const styles = {
         padding: 20,
         marginTop: 5,
         marginBottom: 15,
-        boxShadow: "1px 3px 1px #9E9E9E"
+        boxShadow: "1px 3px 1px #9E9E9E",
+        borderRadius: 8
     },
     title: {
         textAlign: "center",

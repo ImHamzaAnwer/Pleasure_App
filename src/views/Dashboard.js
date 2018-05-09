@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 import DoughnutChart from '../components/Doughnut';
 import LineChart from '../components/LineChart';
@@ -11,7 +11,9 @@ import * as firebase from 'firebase';
 class Dashboard extends Component {
   constructor() {
     super();
+    this.toggle = this.toggle.bind(this);
     this.state = {
+      dropdownOpen: false,
       location: 'tariq-road',
       date: new Date().setHours(0, 0, 0, 0),
       hcount: null,
@@ -19,6 +21,12 @@ class Dashboard extends Component {
       dcount: null,
       acount: null,
     }
+  }
+
+  toggle() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
   }
 
   componentWillMount() {
@@ -54,62 +62,91 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <Container className="animated fadeIn">
-        <Row>
-          <Col xs="12" sm="6" md="3">
-            <InformationBox
-              title="Happy Clicks"
-              numbers={this.state.hcount}
-              iconURL={require('../assets/veryHappy.gif')}
-            />
-          </Col>
-          <Col xs="12" sm="6" md="3">
-            <InformationBox
-              title="Not Happy Clicks"
-              numbers={this.state.scount}
-              iconURL={require('../assets/happy.gif')}
-            />
-          </Col>
-          <Col xs="12" sm="6" md="3">
-            <InformationBox
-              title="Angry Clicks"
-              numbers={this.state.dcount}
-              iconURL={require('../assets/angry.gif')}
-            />
-          </Col>
-          <Col xs="12" sm="6" md="3">
-            <InformationBox
-              title="Very Angry Clicks"
-              numbers={this.state.acount}
-              iconURL={require('../assets/veryAngry.gif')}
-            />
-          </Col>
-        </Row>
+      <div>
+        <div style={styles.dropdownRow}>
+          <Container>
+            <Row>
+              <Col xs="12" style={{flexDirection:"row", display:"flex", alignItems:"center"}}>
+              <h6 style={{paddingRight: 20}}>Filter by:</h6>
+                <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                  <DropdownToggle color="primary" caret>
+                    Location
+                </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem>Location 1</DropdownItem>
+                    <DropdownItem>Location 2</DropdownItem>
+                    <DropdownItem>Location 3</DropdownItem>
+                  </DropdownMenu>
+                </ButtonDropdown>
+              </Col>
+            </Row>
+          </Container>
+        </div>
 
-        <Row>
-          <Col xl="6" md="6" xs="12">
-            <DoughnutChart
-              title="Monthly Report"
-              hcount = {this.state.hcount}
-              scount = {this.state.scount}
-              dcount = {this.state.dcount}
-              acount = {this.state.acount}
-            />
-          </Col>
-          <Col xl="6" md="6" xs="12">
-            <BarChart title="Daily Report" />
-          </Col>
+        <Container className="animated fadeIn">
+          <Row>
+            <Col xs="12" sm="6" md="3">
+              <InformationBox
+                title="Happy Clicks"
+                numbers={this.state.hcount}
+                iconURL={require('../assets/veryHappy.gif')}
+              />
+            </Col>
+            <Col xs="12" sm="6" md="3">
+              <InformationBox
+                title="Not Happy Clicks"
+                numbers={this.state.scount}
+                iconURL={require('../assets/happy.gif')}
+              />
+            </Col>
+            <Col xs="12" sm="6" md="3">
+              <InformationBox
+                title="Angry Clicks"
+                numbers={this.state.dcount}
+                iconURL={require('../assets/angry.gif')}
+              />
+            </Col>
+            <Col xs="12" sm="6" md="3">
+              <InformationBox
+                title="Very Angry Clicks"
+                numbers={this.state.acount}
+                iconURL={require('../assets/veryAngry.gif')}
+              />
+            </Col>
+          </Row>
 
-        </Row>
-        <Row>
-          <Col xs={12}>
-            <LineChart title="Hourly Report" />
-          </Col>
-        </Row>
+          <Row>
+            <Col xl="6" md="6" xs="12">
+              <DoughnutChart
+                title="Monthly Report"
+                hcount={this.state.hcount}
+                scount={this.state.scount}
+                dcount={this.state.dcount}
+                acount={this.state.acount}
+              />
+            </Col>
+            <Col xl="6" md="6" xs="12">
+              <BarChart title="Daily Report" />
+            </Col>
 
-        
-      </Container>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <LineChart title="Hourly Report" />
+            </Col>
+          </Row>
+
+
+        </Container>
+      </div>
     )
+  }
+}
+
+const styles = {
+  dropdownRow: {
+    backgroundColor: "#fff",
+    padding: 20
   }
 }
 export default Dashboard;

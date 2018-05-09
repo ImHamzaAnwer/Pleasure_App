@@ -18,13 +18,14 @@ export default class InformationBox extends Component {
 const styles = {
     container: {
         flex: 1,
+        width: "100%",
         backgroundColor: "#fff",
-        paddingTop: 20,
-        marginTop: 5,
+        padding: 15,
+        marginTop: 10,
         marginBottom: 15,
-        paddingBottom: 20,
         boxShadow: "1px 3px 1px #9E9E9E",
-        height: 230
+        height: 220,
+        borderRadius: 8
     },
     icon: {
         width: 100,

@@ -114,11 +114,11 @@ const styles = {
     container: {
         flex: 1,
         backgroundColor: "#fff",
-        paddingTop: 20,
+        padding: 20,
         marginTop: 5,
         marginBottom: 5,
-        paddingBottom: 20,
-        boxShadow: "1px 3px 1px #9E9E9E"
+        boxShadow: "1px 3px 1px #9E9E9E",
+        borderRadius: 8
     },
     title: {
         textAlign: "center",
