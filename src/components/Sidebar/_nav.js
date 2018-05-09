@@ -11,11 +11,11 @@ export default {
       url: '/reason',
       icon: 'icon-chart',
     },
-    {
-      name: 'Feedback',
-      url: '/feedback',
-      icon: 'icon-envelope',
-    },
+    // {
+    //   name: 'Feedback',
+    //   url: '/feedback',
+    //   icon: 'icon-envelope',
+    // },
     {
       name: 'Add Branch',
       url: '/add_branch',
