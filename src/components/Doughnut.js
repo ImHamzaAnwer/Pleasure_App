@@ -1,32 +1,33 @@
 import React, { Component } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 
-const data = {
-    labels: [
-        'Happy',
-        'Not Happy',
-        'Angry',
-        'Very Angry'
-    ],
-    datasets: [{
-        data: [300, 50, 100, 20],
-        backgroundColor: [
-            '#FF6384',
-            '#36A2EB',
-            '#FFCE56',
-            "orange"
-        ],
-        hoverBackgroundColor: [
-            '#FF6384',
-            '#36A2EB',
-            '#FFCE56',
-            "orange"
-        ]
-    }]
-};
-
 export default class DoughnutChart extends Component {
+    
     render() {
+        const data = {
+            labels: [
+                'Happy',
+                'Not Happy',
+                'Angry',
+                'Very Angry'
+            ],
+            datasets: [{
+                data: [this.props.hcount, this.props.scount, this.props.dcount, this.props.acount],
+                backgroundColor: [
+                    '#FF6384',
+                    '#36A2EB',
+                    '#FFCE56',
+                    "orange"
+                ],
+                hoverBackgroundColor: [
+                    '#FF6384',
+                    '#36A2EB',
+                    '#FFCE56',
+                    "orange"
+                ]
+            }]
+        };
+
         return (
             <div style={styles.container}>
                 <h2 style={styles.title}>{this.props.title}</h2>

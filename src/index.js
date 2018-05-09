@@ -18,6 +18,17 @@ import '../scss/core/_dropdown-menu-right.scss'
 import Full from './containers/Full/'
 import Login from './views/Login';
 import ReasonAnalytics from './views/ReasonAnalytics';
+import * as firebase from 'firebase';
+
+var config = {
+    apiKey: "AIzaSyBbcUA_DOSewEIHbS9la0uFgHFyD3uasfE",
+    authDomain: "pleasureordispleasure.firebaseapp.com",
+    databaseURL: "https://pleasureordispleasure.firebaseio.com",
+    projectId: "pleasureordispleasure",
+    storageBucket: "pleasureordispleasure.appspot.com",
+    messagingSenderId: "725505693594"
+  };
+  firebase.initializeApp(config);
 
 ReactDOM.render((
   <HashRouter>
