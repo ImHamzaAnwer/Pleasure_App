@@ -28,7 +28,16 @@ class Dashboard extends Component {
       dropdownOpen: !this.state.dropdownOpen
     });
   }
-
+  handleChange(e){
+    console.log('changes')
+    this.setState({
+      location: e.currentTarget.textContent
+    })
+    setTimeout(()=>{
+      this.componentWillMount();
+    },1000)
+    
+  }
   componentWillMount() {
     console.log('date: ', this.state.date)
     const happyRef = firebase.database().ref().child(this.state.location).child('happy');
@@ -70,12 +79,13 @@ class Dashboard extends Component {
               <h6 style={{paddingRight: 20}}>Filter by:</h6>
                 <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                   <DropdownToggle color="primary" caret>
-                    Location
+                  {this.state.location}
                 </DropdownToggle>
                   <DropdownMenu>
-                    <DropdownItem>Location 1</DropdownItem>
-                    <DropdownItem>Location 2</DropdownItem>
-                    <DropdownItem>Location 3</DropdownItem>
+                    <DropdownItem ><div onClick={this.handleChange.bind(this)}>askari</div></DropdownItem>
+                    <DropdownItem ><div onClick={this.handleChange.bind(this)}>gulshan-e-iqbal</div></DropdownItem>
+                    <DropdownItem ><div onClick={this.handleChange.bind(this)}>nazimabad</div></DropdownItem>
+                    <DropdownItem ><div onClick={this.handleChange.bind(this)}>tariq-road</div></DropdownItem>
                   </DropdownMenu>
                 </ButtonDropdown>
               </Col>
@@ -118,7 +128,7 @@ class Dashboard extends Component {
           <Row>
             <Col xl="6" md="6" xs="12">
               <DoughnutChart
-                title="Monthly Report"
+                title="Total Report"
                 hcount={this.state.hcount}
                 scount={this.state.scount}
                 dcount={this.state.dcount}
@@ -126,13 +136,14 @@ class Dashboard extends Component {
               />
             </Col>
             <Col xl="6" md="6" xs="12">
-              <BarChart title="Daily Report" />
+                <BarChart title="Weekly Report" location={this.state.location} />
+              
             </Col>
 
           </Row>
           <Row>
             <Col xs={12}>
-              <LineChart title="Hourly Report" />
+              <LineChart title="Monthly Report" location={this.state.location}/>
             </Col>
           </Row>
 

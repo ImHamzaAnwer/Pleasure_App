@@ -7,23 +7,23 @@ export default class DoughnutChart extends Component {
         const data = {
             labels: [
                 'Happy',
-                'Not Happy',
-                'Angry',
-                'Very Angry'
+                'Satisfied',
+                'Dissatisfied',
+                'Angry'
             ],
             datasets: [{
                 data: [this.props.hcount, this.props.scount, this.props.dcount, this.props.acount],
                 backgroundColor: [
-                    '#FF6384',
+                    '#ffcc00',
+                    '#009900',
                     '#36A2EB',
-                    '#FFCE56',
-                    "orange"
+                    "#ff0000"
                 ],
                 hoverBackgroundColor: [
-                    '#FF6384',
+                    '#ffcc00',
+                    '#009900',
                     '#36A2EB',
-                    '#FFCE56',
-                    "orange"
+                    "#ff0000"
                 ]
             }]
         };

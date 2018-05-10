@@ -1,9 +1,63 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { Input, Container, Col, Row, Button } from 'reactstrap';
 
+const byPropKey = (propertyName, value) => () => ({
+  [propertyName]: value,
+});
+
+const INITIAL_STATE = {
+  email: '',
+  password: '',
+  error: null,
+};
+
 export default class Login extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { ...INITIAL_STATE };
+  }
+
+  onSubmit(event){
+    console.log('hello')
+    const {
+      email,
+      password,
+      error
+    } = this.state;
+
+    if (email==='admin@pod.com' && password === 'admin123'){
+      console.log('success')
+      this.setState({
+        email:'',
+        password:'',
+        error:null
+      })
+      return <Redirect to="/dashboard" />
+    }
+    else{
+      console.log('error')
+      this.setState({
+        error:'invalid email or password',
+        email:'',
+        password:'',
+      })
+
+    }
+
+    event.preventDefault();
+  }
   render() {
+    const {
+      email,
+      password,
+      error,
+    } = this.state;
+
+    const isInvalid =
+      password === '' ||
+      email === '';
     return (
       <div style={styles.container}>
         <Container>
@@ -11,12 +65,26 @@ export default class Login extends Component {
             <Col xs={12}>
               <img style={styles.logo} src={require('../assets/logo.png')} />
 
-              <Input style={styles.input} type="email" name="email" placeholder="with a placeholder" />
-              <Input style={styles.input} type="password" name="select" id="exampleSelect" />
+              <Input
+                style={styles.input}
+                value={email}
+                onChange={event => this.setState(byPropKey('email', event.target.value))}
+                type="email"
+                name="email"
+                placeholder="Email Address" />
+              <Input
+                style={styles.input}
+                value={password}
+                type="password"
+                name="select"
+                placeholder="Password"
+                onChange={event => this.setState(byPropKey('password', event.target.value))}
+              />
 
-              <Link to="/dashboard">
-                <Button style={styles.btn} color="primary" size="lg">Login</Button>
-              </Link>
+              
+                <Button style={styles.btn} onClick={this.onSubmit.bind(this)} color="primary" size="lg">Login</Button>
+              
+              { error && <p>{error.message}</p> }
             </Col>
           </Row>
         </Container>

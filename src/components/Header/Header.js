@@ -34,7 +34,8 @@ class Header extends Component {
         <NavbarToggler className="d-lg-none" onClick={this.mobileSidebarToggle}>
           <span className="navbar-toggler-icon"></span>
         </NavbarToggler>
-        <NavbarBrand href="#"></NavbarBrand>
+        <div style={{marginLeft:'10px'}}>Pleasure Or Displeasure</div>
+        {/* <NavbarBrand>Pleasure Or Displeasure</NavbarBrand> */}
         <NavbarToggler className="d-md-down-none mr-auto" onClick={this.sidebarToggle}>
           <span className="navbar-toggler-icon"></span>
         </NavbarToggler>
