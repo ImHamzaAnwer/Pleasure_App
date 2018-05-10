@@ -23,7 +23,7 @@ class Full extends Component {
                 <Route path="/dashboard" name="Dashboard" component={Dashboard} />
                 <Route path="/add_branch" name="Add Branch" component={AddBranch} />
                 <Route path="/reason" name="Reason Analytics" component={ReasonAnalytics} />
-                <Redirect from="/" to="/dashboard" />
+                <Redirect from="/" to="/login" />
               </Switch>
           </main>
 

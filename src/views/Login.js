@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 import { Input, Container, Col, Row, Button } from 'reactstrap';
+import * as firebase from 'firebase';
 
 const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value,
@@ -19,35 +20,33 @@ export default class Login extends Component {
     this.state = { ...INITIAL_STATE };
   }
 
+  
   onSubmit(event){
-    console.log('hello')
     const {
       email,
       password,
-      error
     } = this.state;
 
-    if (email==='admin@pod.com' && password === 'admin123'){
-      console.log('success')
-      this.setState({
-        email:'',
-        password:'',
-        error:null
-      })
-      return <Redirect to="/dashboard" />
-    }
-    else{
-      console.log('error')
-      this.setState({
-        error:'invalid email or password',
-        email:'',
-        password:'',
-      })
+    const { history} = this.props;
 
-    }
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(() => {
+        console.log(email, password, "asdasdasd")
+        this.setState(() => ({ ...INITIAL_STATE }));
+        history.push('/dashboard');
+      })
+      .catch(error => {
+        this.setState(byPropKey('error', error));
+      });
 
     event.preventDefault();
   }
+
+
+
+
+
+
   render() {
     const {
       email,
@@ -72,6 +71,7 @@ export default class Login extends Component {
                 type="email"
                 name="email"
                 placeholder="Email Address" />
+             
               <Input
                 style={styles.input}
                 value={password}
